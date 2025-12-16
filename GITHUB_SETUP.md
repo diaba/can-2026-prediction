@@ -19,7 +19,7 @@ Run these commands in the terminal:
 cd /Users/habsa2war/bash/can
 
 # Add remote repository
-git remote add origin https://github.com/YOUR_USERNAME/can-2026-prediction.git
+git remote add origin https://github.com/diaba/can-2026-prediction.git
 
 # Rename branch to main (optional but recommended)
 git branch -m master main
@@ -27,8 +27,6 @@ git branch -m master main
 # Push to GitHub
 git push -u origin main
 ```
-
-**Replace `YOUR_USERNAME` with your actual GitHub username**
 
 ### 3. Enable GitHub Pages (For Free Web Hosting)
 
@@ -43,7 +41,7 @@ git push -u origin main
 
 5. Wait 1-2 minutes and your site will be live at:
    ```
-   https://YOUR_USERNAME.github.io/can-2026-prediction/
+   https://diaba.github.io/can-2026-prediction/
    ```
 
 ### 4. Verify It Works
@@ -56,7 +54,7 @@ git push -u origin main
 
 ```bash
 # Clone repository locally
-git clone https://github.com/YOUR_USERNAME/can-2026-prediction.git
+git clone https://github.com/diaba/can-2026-prediction.git
 
 # Make changes to code
 # Edit files as needed

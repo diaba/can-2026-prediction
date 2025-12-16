@@ -5,12 +5,14 @@ An AI-powered prediction app for the 2026 African Cup of Nations (CAN) tournamen
 ## Features
 
 ### 🎯 Head to Head Predictions
+
 - Select any two teams and predict the match winner
 - ML model analyzes team statistics and historical performance
 - Shows win probabilities and confidence percentages
 - Visual probability bars for easy comparison
 
 ### 🏆 Group Stage Predictions
+
 - Displays all 12 group stage matches organized by group
 - Group A: Egypt, Senegal, Mali, Cameroon
 - Group B: Morocco, Nigeria, Algeria, Ivory Coast
@@ -18,6 +20,7 @@ An AI-powered prediction app for the 2026 African Cup of Nations (CAN) tournamen
 - Shows detailed results and match predictions
 
 ### 🎪 Tournament Bracket
+
 - Complete tournament progression from group stage to finals
 - Automatic group winner determination based on:
   - Match points (3 for win, 1 for draw, 0 for loss)
@@ -31,11 +34,13 @@ An AI-powered prediction app for the 2026 African Cup of Nations (CAN) tournamen
 The app uses a neural network powered by TensorFlow.js to make predictions based on:
 
 1. **Team Statistics**:
+
    - Historical wins, draws, and losses
    - Goals scored and conceded
    - Overall team strength rating
 
 2. **Machine Learning Model**:
+
    - 4-layer neural network with dropout for regularization
    - Trained on team statistical data
    - Uses Adam optimizer for gradient descent
@@ -55,23 +60,27 @@ The app uses a neural network powered by TensorFlow.js to make predictions based
 ## Installation & Usage
 
 ### Online Version
+
 Simply open `index.html` in any modern web browser. No installation required!
 
 ### Local Setup
+
 1. Clone the repository:
+
    ```bash
-   git clone https://github.com/yourusername/can-2026-prediction.git
+   git clone https://github.com/diaba/can-2026-prediction.git
    cd can-2026-prediction
    ```
 
 2. Open with a live server or simple HTTP server:
+
    ```bash
    # Python 3
    python -m http.server 8000
-   
+
    # Python 2
    python -m SimpleHTTPServer 8000
-   
+
    # Node.js (with http-server)
    npx http-server
    ```
@@ -89,6 +98,7 @@ Simply open `index.html` in any modern web browser. No installation required!
 ## Team Data
 
 The app includes statistics for 8 major African teams:
+
 - **Egypt** (Strength: 0.92) - Defending champions
 - **Nigeria** (Strength: 0.86) - Strong contenders
 - **Morocco** (Strength: 0.88) - Consistent performers
@@ -101,18 +111,21 @@ The app includes statistics for 8 major African teams:
 ## Features Explained
 
 ### 1. Head to Head Mode
+
 - Select two teams from the dropdown menus
 - Click "Predict Winner" to run the ML model
 - Get instant prediction with confidence percentage
 - Visual probability bars show win chances
 
 ### 2. Group Stage Mode
+
 - View all group stage matches organized by group
 - Click "Predict All Matches" to simulate group matches
 - See winners for each match with confidence levels
 - Get detailed summary of group results
 
 ### 3. Tournament Bracket Mode
+
 - Click "Generate Tournament" to run complete tournament
 - AI automatically determines group winners
 - Simulates semi-finals and finals
@@ -129,6 +142,7 @@ The app includes statistics for 8 major African teams:
 ## Accuracy Note
 
 These are AI-based predictions for entertainment purposes. Actual tournament outcomes depend on many factors including:
+
 - Current player form and injuries
 - Tactical decisions by coaches
 - Tournament momentum and morale
@@ -154,6 +168,7 @@ These are AI-based predictions for entertainment purposes. Actual tournament out
 ## Contributing
 
 Contributions are welcome! Feel free to:
+
 - Report bugs
 - Suggest improvements
 - Add new features

@@ -122,8 +122,42 @@ async function trainModel() {
   }
 }
 
-// Calculate match prediction based on team statistics
-function calculateMatchProbability(team1, team2) {
+// Exciting messages for predictions
+const funMessages = {
+  dominant: [
+    "🚀 Absolute Dominance!",
+    "💪 Unstoppable Force!",
+    "🔥 On Fire!",
+    "⚡ Devastating!",
+    "👑 Pure Excellence!",
+  ],
+  strong: [
+    "💯 Strong Prediction!",
+    "🎯 Clear Winner!",
+    "🏆 Likely Champion!",
+    "✨ Brilliant Forecast!",
+    "🌟 Looking Good!",
+  ],
+  balanced: [
+    "⚖️ Very Close Match!",
+    "🤝 Intense Battle!",
+    "🎪 Edge of the Seat!",
+    "⚔️ Evenly Matched!",
+    "🌊 Tides Could Turn!",
+  ],
+  underdog: [
+    "🎲 Upset Alert!",
+    "🌪️ Dark Horse!",
+    "🎯 Surprising Prediction!",
+    "💫 Plot Twist!",
+    "🎭 Underdog Rising!",
+  ],
+};
+
+function getRandomMessage(category) {
+  const messages = funMessages[category];
+  return messages[Math.floor(Math.random() * messages.length)];
+}
   const team1Data = teamData[team1];
   const team2Data = teamData[team2];
 
@@ -171,8 +205,17 @@ async function predictWinner() {
 
   // Show loading status
   const resultsDiv = document.getElementById("results");
-  resultsDiv.innerHTML =
-    '<div class="status loading">🔄 Analyzing team data and predicting...</div>';
+  const loadingMessages = [
+    "🔄 Analyzing team data...",
+    "🤖 Training AI model...",
+    "⚡ Calculating probabilities...",
+    "🎯 Processing team stats...",
+    "🔮 Consulting the crystal ball...",
+    "📊 Running simulations...",
+  ];
+  const randomMessage =
+    loadingMessages[Math.floor(Math.random() * loadingMessages.length)];
+  resultsDiv.innerHTML = `<div class="status loading"><span class="loading-spinner"></span> ${randomMessage}</div>`;
 
   try {
     // Initialize and train model if needed
@@ -210,12 +253,30 @@ function displayResults(
 ) {
   const resultsDiv = document.getElementById("results");
 
+  // Determine message category based on win probability
+  let messageCategory;
+  const probDiff = Math.abs(team1Prob - team2Prob);
+  if (probDiff > 30) {
+    messageCategory = "dominant";
+  } else if (probDiff > 15) {
+    messageCategory = "strong";
+  } else if (probDiff > 5) {
+    messageCategory = "balanced";
+  } else {
+    messageCategory = "underdog";
+  }
+
+  const funMessage = getRandomMessage(messageCategory);
+  const winnerEmoji = winnerProb > 75 ? "👑" : winnerProb > 60 ? "🏆" : "⭐";
+
   let html = `
+        <div class="fun-message">${funMessage}</div>
+        
         <div class="result-item">
             <div>
                 <div class="team-name">${team1}</div>
                 <div class="prediction-bar">
-                    <div class="bar-fill" style="width: ${team1Prob}%"></div>
+                    <div class="confidence-fill" style="width: ${team1Prob}%"></div>
                 </div>
             </div>
             <div class="probability">${team1Prob.toFixed(1)}%</div>
@@ -225,16 +286,15 @@ function displayResults(
             <div>
                 <div class="team-name">${team2}</div>
                 <div class="prediction-bar">
-                    <div class="bar-fill" style="width: ${team2Prob}%"></div>
+                    <div class="confidence-fill" style="width: ${team2Prob}%"></div>
                 </div>
             </div>
             <div class="probability">${team2Prob.toFixed(1)}%</div>
         </div>
 
-        <div class="status success" style="margin-top: 20px; font-size: 1.1em;">
-            🎯 Predicted Winner: <strong>${winner}</strong> (${winnerProb.toFixed(
-    1
-  )}% confidence)
+        <div class="status success celebration" style="margin-top: 20px; font-size: 1.2em;">
+            ${winnerEmoji} <strong>${winner}</strong> will likely win! 
+            <br><small>Confidence: ${winnerProb.toFixed(1)}%</small>
         </div>
     `;
 
@@ -616,17 +676,28 @@ function displayTournamentBracket() {
 
   container.innerHTML = html;
 
-  // Display champion
+  // Display champion with fun message
+  const championMessages = [
+    "🎊 CHAMPIONS OF AFRICA! 🎊",
+    "👑 THE KING OF AFRICA! 👑",
+    "⭐ AFRICAN LEGENDS! ⭐",
+    "🏅 CONTINENTAL MASTERS! 🏅",
+    "🔥 THE GOLDEN EAGLES SOAR! 🔥",
+  ];
+  const champMessage =
+    championMessages[Math.floor(Math.random() * championMessages.length)];
+
   resultsDiv.innerHTML = `
         <div class="final-winner">
-            <div class="final-winner-trophy">🏆</div>
-            <div>CAN 2026 Champion</div>
-            <div style="font-size: 1.5em; margin-top: 10px;">${
+            <div class="final-winner-trophy trophy-animation">🏆</div>
+            <div>${champMessage}</div>
+            <div style="font-size: 1.5em; margin-top: 10px; font-weight: 700;">${
               tournamentBracket.champion
             }</div>
-            <div style="font-size: 0.9em; margin-top: 5px;">(${finalMatch.prob.toFixed(
+            <div style="font-size: 0.95em; margin-top: 8px;">Prediction Confidence: ${finalMatch.prob.toFixed(
               1
-            )}% confidence)</div>
+            )}%</div>
+            <div style="font-size: 0.85em; margin-top: 10px; opacity: 0.9;">🎯 The AI has spoken! 🎯</div>
         </div>
     `;
 }

@@ -349,6 +349,210 @@
         .final-winner-trophy {
             font-size: 3em;
             margin-bottom: 10px;
+            animation: bounce 0.6s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .result-item {
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .predict-btn:active {
+            transform: scale(0.95);
+        }
+
+        .team-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-left: 8px;
+            font-weight: 600;
+        }
+
+        .fun-message {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 15px 0;
+            color: #856404;
+            font-style: italic;
+        }
+
+        .team-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .team-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-card-name {
+            font-weight: 700;
+            font-size: 0.95em;
+            margin-bottom: 5px;
+        }
+
+        .team-card-strength {
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+
+        .confidence-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            animation: slideIn 0.8s ease-out;
+        }
+
+        .trophy-animation {
+            animation: bounce 0.6s ease-in-out infinite;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(102, 126, 234, 0.3);
+            border-radius: 50%;
+            border-top-color: #667eea;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .info-tooltip {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            margin-left: 5px;
+            cursor: help;
+            position: relative;
+        }
+
+        .info-tooltip:hover::after {
+            content: attr(data-info);
+            position: absolute;
+            bottom: 125%;
+            left: 0;
+            background: #333;
+            color: white;
+            padding: 8px;
+            border-radius: 4px;
+            white-space: nowrap;
+            font-size: 0.9em;
+            z-index: 1000;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .stat-box {
+            background: #f0f0f0;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid #667eea;
+        }
+
+        .stat-value {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .celebration {
+            animation: pulse 0.5s ease-in-out;
         }
     </style>
 
@@ -356,8 +560,9 @@
 
 <body>
     <div class="container">
-        <h1>🏆 CAN 2026 Winner Prediction</h1>
-        <p class="subtitle">AI-Powered African Cup of Nations Predictor</p>
+        <h1>🏆 CAN 2026 Winner Prediction 🏆</h1>
+        <p class="subtitle">⚽ AI-Powered African Cup of Nations Predictor ⚽</p>
+        <p class="fun-fact">🎯 Let the AI reveal which team will lift the trophy!</p>
 
         <div class="tabs">
             <button class="tab-btn active" onclick="switchTab('head2head')">Head to Head</button>
@@ -367,40 +572,41 @@
 
         <!-- Head to Head Tab -->
         <div id="head2head" class="tab-content active">
+            <h3 style="text-align: center; color: #667eea; margin-bottom: 15px;">⚔️ Pick Two Teams for Battle</h3>
             <div class="team-selector">
                 <div class="team-input">
-                    <label for="team1">Team 1:</label>
+                    <label for="team1">🔴 Team 1:</label>
                     <select id="team1">
-                        <option value="">Select Team</option>
-                        <option value="Egypt">Egypt</option>
-                        <option value="Senegal">Senegal</option>
-                        <option value="Morocco">Morocco</option>
-                        <option value="Cameroon">Cameroon</option>
-                        <option value="Algeria">Algeria</option>
-                        <option value="Nigeria">Nigeria</option>
-                        <option value="Ivory Coast">Ivory Coast</option>
-                        <option value="Mali">Mali</option>
+                        <option value="">⭐ Select Team</option>
+                        <option value="Egypt">🇪🇬 Egypt</option>
+                        <option value="Senegal">🇸🇳 Senegal</option>
+                        <option value="Morocco">🇲🇦 Morocco</option>
+                        <option value="Cameroon">🇨🇲 Cameroon</option>
+                        <option value="Algeria">🇩🇿 Algeria</option>
+                        <option value="Nigeria">🇳🇬 Nigeria</option>
+                        <option value="Ivory Coast">🇨🇮 Ivory Coast</option>
+                        <option value="Mali">🇲🇱 Mali</option>
                     </select>
                 </div>
                 <div class="team-input">
-                    <label for="team2">Team 2:</label>
+                    <label for="team2">🔵 Team 2:</label>
                     <select id="team2">
-                        <option value="">Select Team</option>
-                        <option value="Egypt">Egypt</option>
-                        <option value="Senegal">Senegal</option>
-                        <option value="Morocco">Morocco</option>
-                        <option value="Cameroon">Cameroon</option>
-                        <option value="Algeria">Algeria</option>
-                        <option value="Nigeria">Nigeria</option>
-                        <option value="Ivory Coast">Ivory Coast</option>
-                        <option value="Mali">Mali</option>
+                        <option value="">⭐ Select Team</option>
+                        <option value="Egypt">🇪🇬 Egypt</option>
+                        <option value="Senegal">🇸🇳 Senegal</option>
+                        <option value="Morocco">🇲🇦 Morocco</option>
+                        <option value="Cameroon">🇨🇲 Cameroon</option>
+                        <option value="Algeria">🇩🇿 Algeria</option>
+                        <option value="Nigeria">🇳🇬 Nigeria</option>
+                        <option value="Ivory Coast">🇨🇮 Ivory Coast</option>
+                        <option value="Mali">🇲🇱 Mali</option>
                     </select>
                 </div>
             </div>
 
             <div class="button-group">
-                <button class="predict-btn" onclick="predictWinner()">Predict Winner</button>
-                <button class="reset-btn" onclick="resetApp()">Reset</button>
+                <button class="predict-btn" onclick="predictWinner()">⚡ Predict Winner</button>
+                <button class="reset-btn" onclick="resetApp()">🔄 Reset</button>
             </div>
 
             <div class="results" id="results"></div>
@@ -408,24 +614,26 @@
 
         <!-- Group Stage Tab -->
         <div id="group-stage" class="tab-content">
+            <h3 style="text-align: center; color: #667eea; margin-bottom: 15px;">🏅 Group Stage Battle</h3>
             <div id="groups-container"></div>
             <div class="button-group">
-                <button class="predict-btn" onclick="predictAllMatches()">Predict All Matches</button>
-                <button class="reset-btn" onclick="resetGroupStage()">Reset</button>
+                <button class="predict-btn" onclick="predictAllMatches()">⚡ Predict All Matches</button>
+                <button class="reset-btn" onclick="resetGroupStage()">🔄 Reset</button>
             </div>
             <div class="results" id="group-results"></div>
         </div>
 
         <!-- Tournament Bracket Tab -->
         <div id="bracket" class="tab-content">
+            <h3 style="text-align: center; color: #667eea; margin-bottom: 15px;">🎪 The Grand Journey to Glory!</h3>
             <div class="bracket-info">
                 <p style="text-align: center; color: #666; margin-bottom: 20px;">
-                    Predict group winners and advance through knockouts to the final!
+                    🔥 Watch the AI predict every match from group stage to the magnificent final! 🔥
                 </p>
             </div>
             <div class="button-group">
-                <button class="predict-btn" onclick="predictTournamentBracket()">Generate Tournament</button>
-                <button class="reset-btn" onclick="resetBracket()">Reset</button>
+                <button class="predict-btn" onclick="predictTournamentBracket()">⚡ Generate Tournament</button>
+                <button class="reset-btn" onclick="resetBracket()">🔄 Reset</button>
             </div>
             <div id="bracket-container"></div>
             <div class="results" id="bracket-results"></div>

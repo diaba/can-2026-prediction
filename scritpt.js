@@ -3,37 +3,36 @@
 
 // Team statistics data (Wins, Draws, Losses, Goals Scored)
 const teamData = {
-  Algeria: { features: [4, 2, 0, 11], strength: 0.88 },
-  Angola: { features: [3, 2, 1, 8], strength: 0.65 },
-  Benin: { features: [3, 1, 2, 7], strength: 0.58 },
-  Botswana: { features: [2, 2, 2, 5], strength: 0.52 },
-  Burkina_Faso: { features: [4, 1, 1, 10], strength: 0.79 },
-  Cameroon: { features: [4, 2, 0, 12], strength: 0.84 },
-  Comoros: { features: [4, 1, 1, 10], strength: 0.68 },
-  DR_Congo: { features: [4, 0, 2, 9], strength: 0.72 },
-  Egypt: { features: [6, 0, 0, 16], strength: 0.88 },
-  Equatorial_Guinea: { features: [3, 2, 1, 7], strength: 0.61 },
-  Gabon: { features: [3, 1, 2, 7], strength: 0.63 },
-  Ivory_Coast: { features: [3, 2, 1, 9], strength: 0.82 },
-  Mali: { features: [4, 1, 1, 11], strength: 0.75 },
-  Morocco: { features: [6, 0, 0, 20], strength: 0.92 },
-  Mozambique: { features: [2, 2, 2, 6], strength: 0.48 },
-  Nigeria: { features: [4, 1, 1, 14], strength: 0.86 },
-  Senegal: { features: [4, 2, 0, 12], strength: 0.89 },
-  South_Africa: { features: [3, 2, 1, 10], strength: 0.78 },
-  Sudan: { features: [3, 1, 2, 7], strength: 0.55 },
-  Tanzania: { features: [2, 2, 2, 5], strength: 0.45 },
-  Tunisia: { features: [4, 0, 2, 9], strength: 0.81 },
-  Uganda: { features: [2, 3, 1, 6], strength: 0.51 },
-  Zambia: { features: [3, 1, 2, 10], strength: 0.69 },
-  Zimbabwe: { features: [2, 3, 1, 8], strength: 0.5 },
+  Algeria: { features: [4, 2, 0, 11], strength: 0.88, flag: "🇩🇿" },
+  Angola: { features: [3, 2, 1, 8], strength: 0.65, flag: "🇦🇴" },
+  Benin: { features: [3, 1, 2, 7], strength: 0.58, flag: "🇧🇯" },
+  Botswana: { features: [2, 2, 2, 5], strength: 0.52, flag: "🇧🇼" },
+  Burkina_Faso: { features: [4, 1, 1, 10], strength: 0.79, flag: "🇧🇫" },
+  Cameroon: { features: [4, 2, 0, 12], strength: 0.84, flag: "🇨🇲" },
+  Comoros: { features: [4, 1, 1, 10], strength: 0.68, flag: "🇰🇲" },
+  DR_Congo: { features: [4, 0, 2, 9], strength: 0.72, flag: "🇨🇩" },
+  Egypt: { features: [6, 0, 0, 16], strength: 0.88, flag: "🇪🇬" },
+  Equatorial_Guinea: { features: [3, 2, 1, 7], strength: 0.61, flag: "🇬🇶" },
+  Gabon: { features: [3, 1, 2, 7], strength: 0.63, flag: "🇬🇦" },
+  Ivory_Coast: { features: [3, 2, 1, 9], strength: 0.82, flag: "🇨🇮" },
+  Mali: { features: [4, 1, 1, 11], strength: 0.75, flag: "🇲🇱" },
+  Morocco: { features: [6, 0, 0, 20], strength: 0.92, flag: "🇲🇦" },
+  Mozambique: { features: [2, 2, 2, 6], strength: 0.48, flag: "🇲🇿" },
+  Nigeria: { features: [4, 1, 1, 14], strength: 0.86, flag: "🇳🇬" },
+  Senegal: { features: [4, 2, 0, 12], strength: 0.89, flag: "🇸🇳" },
+  South_Africa: { features: [3, 2, 1, 10], strength: 0.78, flag: "🇿🇦" },
+  Sudan: { features: [3, 1, 2, 7], strength: 0.55, flag: "🇸🇩" },
+  Tanzania: { features: [2, 2, 2, 5], strength: 0.45, flag: "🇹🇿" },
+  Tunisia: { features: [4, 0, 2, 9], strength: 0.81, flag: "🇹🇳" },
+  Uganda: { features: [2, 3, 1, 6], strength: 0.51, flag: "🇺🇬" },
+  Zambia: { features: [3, 1, 2, 10], strength: 0.69, flag: "🇿🇲" },
+  Zimbabwe: { features: [2, 3, 1, 8], strength: 0.5, flag: "🇿🇼" },
 };
 
 // CAN 2026 Group Stage Format
 const groupStage = {
   "Group A": ["Egypt", "Senegal", "Mali", "Cameroon"],
   "Group B": ["Morocco", "Nigeria", "Algeria", "Ivory Coast"],
-  "Group B": ["Egypt", "South Africa", "Angola", "Zimbabwe"],
   "Group C": ["Nigeria", "Tunisia", "Uganda", "Tanzania"],
   "Group D": ["Senegal", "DR Congo", "Benin", "Botswana"],
   "Group E": ["Algeria", "Burkina Faso", "Equatorial Guinea", "Sudan"],
@@ -57,9 +56,38 @@ function generateMatches() {
     }
   }
 }
-
 generateMatches();
 
+// add dom elements for group stage matches
+// get element id team1 from DOM
+const team1Element = document.getElementById("team1");
+const team2Element = document.getElementById("team2");
+
+// Populate team selection dropdowns
+function populateTeamDropdowns() {
+  const teams = Object.keys(teamData).sort();
+
+  teams.forEach((team) => {
+    const teamNameFormatted = team.replace(/_/g, " ");
+    const teamFlag = teamData[team].flag;
+    const optionText = `${teamFlag} ${teamNameFormatted}`;
+
+    // Create option for the first dropdown
+    const option1 = document.createElement("option");
+    option1.value = team;
+    option1.textContent = optionText;
+    if (team1Element) team1Element.appendChild(option1);
+
+    // Create option for the second dropdown
+    const option2 = document.createElement("option");
+    option2.value = team;
+    option2.textContent = optionText;
+    if (team2Element) team2Element.appendChild(option2);
+  });
+}
+populateTeamDropdowns();
+
+// TensorFlow.js model variables
 let model;
 let isModelTrained = false;
 
@@ -76,19 +104,19 @@ async function initializeModel() {
   model = tf.sequential({
     layers: [
       tf.layers.dense({
-        inputShape: [4],
-        units: 16,
+        inputShape: [9], // Optimized for 9 features
+        units: 32, // Increased units to handle more complex input
         activation: "relu",
         kernelInitializer: "heNormal",
       }),
       tf.layers.dropout({ rate: 0.2 }),
       tf.layers.dense({
-        units: 8,
+        units: 16,
         activation: "relu",
         kernelInitializer: "heNormal",
       }),
       tf.layers.dense({
-        units: 4,
+        units: 8,
         activation: "relu",
         kernelInitializer: "heNormal",
       }),

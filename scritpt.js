@@ -3,20 +3,41 @@
 
 // Team statistics data (Wins, Draws, Losses, Goals Scored)
 const teamData = {
-  Egypt: { features: [35, 15, 12, 120], strength: 0.92 },
-  Senegal: { features: [28, 12, 16, 95], strength: 0.85 },
-  Morocco: { features: [30, 14, 14, 105], strength: 0.88 },
-  Cameroon: { features: [32, 11, 17, 110], strength: 0.84 },
-  Algeria: { features: [26, 10, 18, 85], strength: 0.78 },
-  Nigeria: { features: [33, 13, 15, 115], strength: 0.86 },
-  "Ivory Coast": { features: [29, 12, 17, 100], strength: 0.82 },
-  Mali: { features: [24, 8, 20, 75], strength: 0.72 },
+  Algeria: { features: [4, 2, 0, 11], strength: 0.88 },
+  Angola: { features: [3, 2, 1, 8], strength: 0.65 },
+  Benin: { features: [3, 1, 2, 7], strength: 0.58 },
+  Botswana: { features: [2, 2, 2, 5], strength: 0.52 },
+  Burkina_Faso: { features: [4, 1, 1, 10], strength: 0.79 },
+  Cameroon: { features: [4, 2, 0, 12], strength: 0.84 },
+  Comoros: { features: [4, 1, 1, 10], strength: 0.68 },
+  DR_Congo: { features: [4, 0, 2, 9], strength: 0.72 },
+  Egypt: { features: [6, 0, 0, 16], strength: 0.88 },
+  Equatorial_Guinea: { features: [3, 2, 1, 7], strength: 0.61 },
+  Gabon: { features: [3, 1, 2, 7], strength: 0.63 },
+  Ivory_Coast: { features: [3, 2, 1, 9], strength: 0.82 },
+  Mali: { features: [4, 1, 1, 11], strength: 0.75 },
+  Morocco: { features: [6, 0, 0, 20], strength: 0.92 },
+  Mozambique: { features: [2, 2, 2, 6], strength: 0.48 },
+  Nigeria: { features: [4, 1, 1, 14], strength: 0.86 },
+  Senegal: { features: [4, 2, 0, 12], strength: 0.89 },
+  South_Africa: { features: [3, 2, 1, 10], strength: 0.78 },
+  Sudan: { features: [3, 1, 2, 7], strength: 0.55 },
+  Tanzania: { features: [2, 2, 2, 5], strength: 0.45 },
+  Tunisia: { features: [4, 0, 2, 9], strength: 0.81 },
+  Uganda: { features: [2, 3, 1, 6], strength: 0.51 },
+  Zambia: { features: [3, 1, 2, 10], strength: 0.69 },
+  Zimbabwe: { features: [2, 3, 1, 8], strength: 0.5 },
 };
 
 // CAN 2026 Group Stage Format
 const groupStage = {
   "Group A": ["Egypt", "Senegal", "Mali", "Cameroon"],
   "Group B": ["Morocco", "Nigeria", "Algeria", "Ivory Coast"],
+  "Group B": ["Egypt", "South Africa", "Angola", "Zimbabwe"],
+  "Group C": ["Nigeria", "Tunisia", "Uganda", "Tanzania"],
+  "Group D": ["Senegal", "DR Congo", "Benin", "Botswana"],
+  "Group E": ["Algeria", "Burkina Faso", "Equatorial Guinea", "Sudan"],
+  "Group F": ["Côte d'Ivoire", "Cameroon", "Gabon", "Mozambique"],
 };
 
 // Generate all group stage matches

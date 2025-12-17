@@ -158,6 +158,9 @@ function getRandomMessage(category) {
   const messages = funMessages[category];
   return messages[Math.floor(Math.random() * messages.length)];
 }
+
+// Calculate match prediction based on team statistics
+function calculateMatchProbability(team1, team2) {
   const team1Data = teamData[team1];
   const team2Data = teamData[team2];
 

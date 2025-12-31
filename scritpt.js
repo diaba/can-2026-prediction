@@ -31,9 +31,9 @@ const teamData = {
 
 // CAN 2026 Group Stage Format
 const groupStage = {
-  "Group A": ["Egypt", "Senegal", "Mali", "Cameroon"],
-  "Group B": ["Morocco", "Nigeria", "Algeria", "Ivory Coast"],
-  "Group C": ["Nigeria", "Tunisia", "Uganda", "Tanzania"],
+  "Group A": ["Zambia", "Morocco", "Mali", "Comoros"],
+  "Group B": ["Egypt", "South Africa", "Angola", "Zimbabwe"],
+  "Group C": ["Nigeria", "Tunisia", "Uganda", "Tanzania"],  
   "Group D": ["Senegal", "DR Congo", "Benin", "Botswana"],
   "Group E": ["Algeria", "Burkina Faso", "Equatorial Guinea", "Sudan"],
   "Group F": ["Côte d'Ivoire", "Cameroon", "Gabon", "Mozambique"],
